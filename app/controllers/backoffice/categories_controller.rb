@@ -1,16 +1,11 @@
 class Backoffice::CategoriesController < BackofficeController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
 
   # GET /backoffice/categories
   # GET /backoffice/categories.json
    def index
      @categories = Category.all
    end
-
-  # GET /backoffice/categories/1
-  # GET /backoffice/categories/1.json
-  # def show
-  # end
 
   # GET /backoffice/categories/new
   def new
