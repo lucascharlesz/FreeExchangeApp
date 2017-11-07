@@ -37,7 +37,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'bootstrap_sb_admin_base_v2'
 gem 'font-awesome-rails'
-gem 'rails-assets-bootstrap', '3.3.7', source: 'https://rails-assets.org'
+gem 'rails-assets-bootstrap', '4.0.0.beta', source: 'https://rails-assets.org'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
