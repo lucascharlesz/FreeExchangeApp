@@ -28,7 +28,7 @@ class Backoffice::CategoriesController < BackofficeController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { redirect_to backoffice_categories_path, notice: "Category #{@category.description} was successfully created." }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Backoffice::CategoriesController < BackofficeController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        format.html { redirect_to backoffice_categories_path, notice: "Category #{@category.description} was successfully updated." }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class Backoffice::CategoriesController < BackofficeController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.fetch(:category, {})
+      params.require(:category).permit(:description)
     end
 end

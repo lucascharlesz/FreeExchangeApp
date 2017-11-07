@@ -1,17 +1,34 @@
-<%= form_with(model: category, local: true) do |form| %>
+<%= form_with(model: [:backoffice, category], local: true) do |form| %>
   <% if category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
-
-      <ul>
-      <% category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <div id="error_explanation">
+        <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+        <ul>
+        <% category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+      <label>Description</label>
+      <%= form.text_field :description, class: "form-control", placeholder: "Type description"%>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-6">
+      <%= link_to backoffice_categories_path, class: "btn btn-outline btn-danger btn-block", data: { confirm: 'If you leave now, all changed data will be lost. Are you sure?' } do %>
+        <i class="fa fa-arrow-left"></i>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <%= button_tag(type: "submit", class: "btn btn-outline btn-success btn-block") do %>
+        <i class="fa fa-check"></i>
+      <% end %>
+    </div>
   </div>
 <% end %>
+
