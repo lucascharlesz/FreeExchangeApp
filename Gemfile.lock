@@ -140,6 +140,7 @@ GEM
       rails-assets-jquery (>= 1.9.1)
       rails-assets-popper.js (>= 1.11.0, < 2)
     rails-assets-jquery (3.2.1)
+    rails-assets-notifyjs (0.4.2)
     rails-assets-popper.js (1.12.6)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
@@ -234,6 +235,7 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.4)
   rails-assets-bootstrap (= 4.0.0.beta)!
+  rails-assets-notifyjs!
   rails-i18n
   sass-rails (~> 5.0)
   selenium-webdriver

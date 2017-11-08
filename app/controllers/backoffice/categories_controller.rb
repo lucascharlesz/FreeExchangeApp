@@ -23,7 +23,7 @@ class Backoffice::CategoriesController < BackofficeController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to backoffice_categories_path, notice: "Category #{@category.description} was successfully created." }
+        format.html { redirect_to backoffice_categories_path, notice: "Category #{@category.description} was successfully created.", notice_kind: "sucess" }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
@@ -37,7 +37,7 @@ class Backoffice::CategoriesController < BackofficeController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to backoffice_categories_path, notice: "Category #{@category.description} was successfully updated." }
+        format.html { redirect_to backoffice_categories_path, notice: "Category #{@category.description} was successfully updated.", notice_kind: "sucess" }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -51,7 +51,7 @@ class Backoffice::CategoriesController < BackofficeController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to backoffice_categories_path, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to backoffice_categories_path, notice: 'Category was successfully destroyed.', notice_kind: "sucess" }
       format.json { head :no_content }
     end
   end
