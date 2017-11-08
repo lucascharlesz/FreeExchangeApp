@@ -7,11 +7,6 @@ class Backoffice::UsersController < BackofficeController
     @users = User.all
   end
 
-  # GET /backoffice/users/1
-  # GET /backoffice/users/1.json
-  def show
-  end
-
   # GET /backoffice/users/new
   def new
     @user = User.new
@@ -28,7 +23,7 @@ class Backoffice::UsersController < BackofficeController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user, notice: 'User was successfully created.' }
+        format.html { redirect_to backoffice_users_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -40,10 +35,15 @@ class Backoffice::UsersController < BackofficeController
   # PATCH/PUT /backoffice/users/1
   # PATCH/PUT /backoffice/users/1.json
   def update
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @backoffice_user }
+        format.html { redirect_to backoffice_users_path, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class Backoffice::UsersController < BackofficeController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to backoffice_users_path, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class Backoffice::UsersController < BackofficeController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.fetch(:user, {})
+      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 end
