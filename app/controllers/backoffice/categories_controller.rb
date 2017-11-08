@@ -51,7 +51,12 @@ class Backoffice::CategoriesController < BackofficeController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to backoffice_categories_path, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to backoffice_categories_path, 
+      notice: { 
+        title: 'Deleted!',
+        text: 'Category was successfully deleted.',
+        type: 'success'}
+    }
       format.json { head :no_content }
     end
   end

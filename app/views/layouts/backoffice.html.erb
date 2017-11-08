@@ -53,7 +53,7 @@
     <!-- /#wrapper -->
     <script>
         <% if notice %>
-            $.notify("<%= notice %>", "<%= set_notice_kind %>");
+            swal(JSON.parse("<%= notice %>"))
         <% end %>
     </script>
 </body>

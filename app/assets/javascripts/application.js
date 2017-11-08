@@ -11,7 +11,39 @@
 // about supported directives.
 //
 
-//= require rails-ujs
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require notifyjs
+//= require sweetalert2
+
+
+//Override the default confirm dialog by railsjQuery ->
+$.rails.allowAction = function(link) {
+    if (!link.attr('data-confirm'))
+        return true 
+
+    $.rails.showConfirmDialog(link)
+    return false
+}
+
+$.rails.confirmed = function(link) {
+    link.removeAttr('data-confirm')
+    link.trigger('click')
+}
+
+$.rails.showConfirmDialog = function(link) {
+    message = link.attr('data-confirm')
+    swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then(function () {
+        $.rails.confirmed(link)
+        return
+    });
+}
