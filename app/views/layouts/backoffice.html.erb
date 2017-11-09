@@ -52,11 +52,16 @@
     </div>
     <!-- /#wrapper -->
     <script>
-        <% if notice %>
-            swal(JSON.parse("<%= notice %>"))
-        <% end %>
+        $( document ).ready(function() {
+            <% if notice %>
+                notice = <%= raw notice.to_json %>
+                if (notice != "") {
+                    swal(notice);
+                    notice = "";
+                }
+            <% end %>
+        })
     </script>
 </body>
 
 </html>
-

@@ -19,7 +19,7 @@
                   <% end %>
               </td>
               <td>
-                  <%= link_to backoffice_category_path(category), class: "btn btn-outline btn-danger btn-block", method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <%= link_to backoffice_category_path(category), class: "btn btn-outline btn-danger btn-block", method: :delete, data: { title: 'Are you sure?', type: "warning", confirm: "You won't be able to revert this!" } do %>
                       <i class="fa fa-trash-o"></i>
                   <% end %>
               </td>

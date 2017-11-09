@@ -11,7 +11,6 @@
 // about supported directives.
 //
 
-//= require turbolinks
 //= require jquery
 //= require jquery_ujs
 //= require notifyjs
@@ -23,27 +22,38 @@ $.rails.allowAction = function(link) {
     if (!link.attr('data-confirm'))
         return true 
 
-    $.rails.showConfirmDialog(link)
-    return false
+    $.rails.showConfirmDialog(link);
+    return
 }
 
 $.rails.confirmed = function(link) {
-    link.removeAttr('data-confirm')
-    link.trigger('click')
+    setTimeout(function (){ 
+        link.removeAttr('data-confirm')[0].click();
+    }, 250);
+    
+    return
 }
 
 $.rails.showConfirmDialog = function(link) {
-    message = link.attr('data-confirm')
+    message = link.attr('data-confirm');
+    title = link.attr('data-title');
+    type = link.attr('data-type');
     swal({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
+        title: title,
+        text: message,
+        type: type,
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'I am sure!',
+        cancelButtonText: 'Nevermind'
     }).then(function () {
-        $.rails.confirmed(link)
+        $.rails.confirmed(link);
+        
+        link.blur()
+        return
+    }, function () {
+        link.blur()
         return
     });
 }
