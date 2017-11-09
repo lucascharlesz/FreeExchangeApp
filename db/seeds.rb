@@ -27,6 +27,7 @@ puts "[DONE]"
 print "Inserting default admin..."
 
 User.create!(email: "admin@freexchange.com",
+             name: "Admin",
              password: "123456", 
              password_confirmation: "123456")
 

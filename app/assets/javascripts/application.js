@@ -46,10 +46,17 @@ $.rails.showConfirmDialog = function(link) {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'I am sure!',
-        cancelButtonText: 'Nevermind'
-    }).then(function () {
-        $.rails.confirmed(link);
-        
+        cancelButtonText: 'Nevermind',
+        reverseButtons: true,
+        // showLoaderOnConfirm: true,
+        allowOutsideClick: false,        
+        preConfirm: function () {
+            return new Promise(function (resolve) {
+                $.rails.confirmed(link);
+                resolve();
+            })
+        }
+    }).then(function () {        
         link.blur()
         return
     }, function () {

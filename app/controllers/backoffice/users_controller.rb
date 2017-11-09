@@ -23,7 +23,9 @@ class Backoffice::UsersController < BackofficeController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to backoffice_users_path, notice: 'User was successfully created.' }
+        format.html { redirect_to backoffice_users_path,
+        notice: notification_alert('success', 'Created!', "User [#{@user.name}] was successfully created.") 
+      }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -42,7 +44,9 @@ class Backoffice::UsersController < BackofficeController
 
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to backoffice_users_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to backoffice_users_path,
+        notice: notification_alert('success', 'Updated!', "User [#{@user.name}] was successfully updated.") 
+      }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -56,7 +60,9 @@ class Backoffice::UsersController < BackofficeController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to backoffice_users_path, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to backoffice_users_path,
+      notice:  notification_alert('success', 'Deleted!', "User was successfully deleted.") 
+    }
       format.json { head :no_content }
     end
   end
@@ -69,6 +75,6 @@ class Backoffice::UsersController < BackofficeController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

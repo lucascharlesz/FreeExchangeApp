@@ -3,6 +3,7 @@
       <tr>
           <th>#</th>
           <th>ID</th>
+          <th>Name</th>
           <th>E-mail</th>
           <th colspan=2 style="width: 10%"></th>
       </tr>
@@ -12,6 +13,7 @@
           <tr class=<%= even_odd(index) %>>
               <td><%= index + 1%></td>
               <td><%= user.id %></td>
+              <td><%= user.name %></td>
               <td><%= user.email %></td>
               <td>
                   <%= link_to edit_backoffice_user_path(user), class: "btn btn-outline btn-primary btn-block" do %>
@@ -19,14 +21,14 @@
                   <% end %>
               </td>
               <td>
-                  <%= link_to backoffice_user_path(user), class: "btn btn-outline btn-danger btn-block", method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <%= link_to backoffice_user_path(user), class: "btn btn-outline btn-danger btn-block", method: :delete, data: { title: 'Are you sure?', type: "warning", confirm: "You won't be able to revert this!" } do %>
                       <i class="fa fa-trash-o"></i>
                   <% end %>
               </td>
           </tr>
       <% end %>
       <tr>
-          <td colspan=5>
+          <td colspan=6>
               <%= link_to new_backoffice_user_path, class: "btn btn-outline btn-success btn-block" do %>
                   <i class="fa fa-plus"></i>
               <% end %>
