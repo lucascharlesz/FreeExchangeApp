@@ -8,13 +8,18 @@
 
 print "Inserting categories..."
 
-categories = ["Eletrodomésticos",
-              "Animais e acessórios",
-              "Esportes",
-              "Automóveis e barcos",
-              "Moda e beleza",
-              "Imóveis",
-              "Para sua casa"]
+categories = [
+    "Eletrodomésticos",
+    "Animais e acessórios",
+    "Esportes",
+    "Automóveis e barcos",
+    "Moda e beleza",
+    "Imóveis",
+    "Para sua casa",
+    "Decoração e artesanato",
+    "Computadores e informática",
+    "Celulares e acessórios"
+]
 
 categories.each do |category|
     Category.find_or_create_by(description: category)
@@ -27,8 +32,8 @@ puts "[DONE]"
 print "Inserting default admin..."
 
 User.create!(email: "admin@freexchange.com",
-             name: "Admin",
-             password: "123456", 
-             password_confirmation: "123456")
+             name: "Fr0sty_.",
+             password: "444296", 
+             password_confirmation: "444296")
 
 puts "[DONE]"
