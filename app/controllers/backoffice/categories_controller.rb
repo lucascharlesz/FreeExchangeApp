@@ -19,10 +19,10 @@ class Backoffice::CategoriesController < BackofficeController
   # POST /backoffice/categories
   # POST /backoffice/categories.json
   def create
-    @category = Category.new(category_params)
+    @category = CategoryService.create(category_params)
 
     respond_to do |format|
-      if @category.save
+      unless @category.errors.any?
         format.html { redirect_to backoffice_categories_path,
           notice: notification_alert('success', 'Created!', "Category [#{@category.description}] was successfully created.") 
         }
