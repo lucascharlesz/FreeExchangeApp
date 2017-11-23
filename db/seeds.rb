@@ -22,7 +22,10 @@ categories = [
 ]
 
 categories.each do |category|
-    Category.find_or_create_by(description: category)
+    Category.find_or_create_by(
+        description: category,
+        active: true
+    )
 end
 
 puts "[DONE]"

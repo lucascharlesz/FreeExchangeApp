@@ -4,6 +4,7 @@
           <th>#</th>
           <th>ID</th>
           <th>Description</th>
+          <th>Active</th>
           <th colspan=2 style="width: 10%"></th>
       </tr>
   </thead>
@@ -13,6 +14,7 @@
               <td><%= index + 1%></td>
               <td><%= category.id %></td>
               <td><%= category.description %></td>
+              <td><i class="<%= active(category.active) %>" style="font-size: 20px"></i></td>
               <td>
                   <%= link_to edit_backoffice_category_path(category), class: "btn btn-outline btn-primary btn-block" do %>
                       <i class="fa fa-edit"></i>
@@ -26,7 +28,7 @@
           </tr>
       <% end %>
       <tr>
-          <td colspan=5>
+          <td colspan=6>
               <%= link_to new_backoffice_category_path, class: "btn btn-outline btn-success btn-block" do %>
                   <i class="fa fa-plus"></i>
               <% end %>

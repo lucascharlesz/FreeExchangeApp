@@ -38,15 +38,17 @@ $.rails.showConfirmDialog = function(link) {
     message = link.attr('data-confirm');
     title = link.attr('data-title');
     type = link.attr('data-type');
+    confirmation_button = link.attr('data-confirmation-button');
+    cancel_button = link.attr('data-cancel-button');
     swal({
-        title: title,
+        title: title || 'Are you sure?',
         text: message,
         type: type,
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'I am sure!',
-        cancelButtonText: 'Nevermind',
+        confirmButtonText: confirmation_button || 'I am sure!',
+        cancelButtonText: cancel_button || 'Nevermind',
         reverseButtons: true,
         // showLoaderOnConfirm: true,
         allowOutsideClick: false,        
